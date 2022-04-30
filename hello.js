@@ -1,18 +1,43 @@
 'use strict'
-const array = [1, 2, 3, 4, 5]
-const functionToApply = function (element) {
-  element **= 2
-  return element
-}
-const newArray = []
-const map = function (functionToApply, array) {
-  array.forEach(function (element) {
-    console.log(`${functionToApply(element)}`)
-    newArray.push(functionToApply(element))
-  })
-}
-const map1 = array.map(x => x * 2)
+const students = [
+  {
+    name: 'Kwezi',
+    studentNumber: 453528,
+    yearOfStudy: 4
+  },
+  {
+    name: 'Pieter',
+    studentNumber: 454345,
+    yearOfStudy: 3
+  },
+  {
+    name: 'Jade',
+    studentNumber: 678343,
+    yearOfStudy: 4
+  },
+  {
+    name: 'Kiren',
+    studentNumber: 567893,
+    yearOfStudy: 4
+  }
+]
 
-console.log(map1)
-console.log(map(functionToApply, array))
-console.log(newArray)
+const deleteStudent = function (student, theStudents) {
+  if (theStudents.findIndex(function (element) {
+    return element.name === student.name &&
+             element.studentNumber === student.studentNumber &&
+             element.yearOfStudy === student.yearOfStudy
+  })) {
+    theStudents.splice(theStudents.indexOf(student), 1)
+  }
+  return theStudents
+}
+console.log(students)
+
+const modifiedArray = deleteStudent({
+  name: 'Kiren',
+  studentNumber: 567893,
+  yearOfStudy: 4
+}, students)
+
+console.log(modifiedArray)
