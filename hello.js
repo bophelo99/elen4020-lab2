@@ -1,17 +1,24 @@
-const course = {
-  courseCode: 'ELEN3010'
+'use strict'
+const account = {
+  Balance: 0,
+  TotalDeposit: 0,
+  TotalWithdrawal: 0,
+  deposit: function (amount) {
+    this.Balance += amount
+    this.TotalDeposit += amount
+  },
+  withdraw: function (amount) {
+    if (this.Balance > amount) {
+      this.Balance -= amount
+      this.TotalWithdrawal += amount
+    } else { console.log(`insufficient available Balance R ${this.Balance}`) }
+  },
+  getsummary: function () {
+    return console.log(`This account has a balance of R ${this.Balance}. There have been deposits totalling R ${this.TotalDeposit} and withdrawals totalling R ${this.TotalWithdrawal}.`)
+  }
 }
-console.log(course) // print the entire object
-// access the object's properties
-console.log(` student's ourseCode is ${course.ourseCode}`)
-
-const addyearOffered = function (theourseCode, coursecode) {
-  theourseCode.yearOffered = coursecode.includes('40') ? 4 : 3 // add a new property called age to the student
-}
-addyearOffered(course, course.courseCode)
-console.log(course)
-
-const courseinformation = function (thecourse) {
-  console.log(` ${thecourse.courseCode} is offered in year ${thecourse.yearOffered} `)
-}
-courseinformation(course)
+account.deposit(200)
+account.withdraw(50)
+account.withdraw(50)
+account.deposit(100)
+account.getsummary()
